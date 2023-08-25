@@ -3,7 +3,8 @@
 @import "../variables/transitions.scss";
 
 .logo-section {
-  @include grid-cols(3, center);
+  @include grid-cols(3);
+  justify-items: center;
   padding-top: $space-b-section;
 
   .vite-link,
