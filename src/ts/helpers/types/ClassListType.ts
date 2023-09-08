@@ -1,3 +1,3 @@
-type ClassListType = "add" | "remove" | "toggle";
+type ClassListType = "add" | "remove";
 
 export default ClassListType;

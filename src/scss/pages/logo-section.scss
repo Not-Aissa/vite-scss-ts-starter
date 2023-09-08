@@ -1,9 +1,7 @@
-@import "../mixins/grid/grid-cols.scss";
-@import "../variables/spaces.scss";
-@import "../variables/transitions.scss";
+@import "../mixins/grid/grid-rows.scss";
 
 .logo-section {
-  @include grid-cols(3);
+  @include grid-rows(3);
   justify-items: center;
   padding-top: $space-b-section;
 

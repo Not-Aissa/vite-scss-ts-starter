@@ -15,61 +15,29 @@ class Dom implements IDom {
     return elements;
   }
 
-  public create<E extends keyof HTMLElementTagNameMap>(
-    element: E,
-    content?: string | undefined
-  ): HTMLElementTagNameMap[E] {
-    const created_element = document.createElement<E>(element);
+  public create<E extends keyof HTMLElementTagNameMap>(element: E, content?: string): HTMLElementTagNameMap[E] {
+    const createdElement = document.createElement<E>(element);
 
-    if (content) {
-      created_element.appendChild(document.createTextNode(content));
+    if (!content) return createdElement;
 
-      return created_element;
-    }
+    createdElement.appendChild(document.createTextNode(content));
 
-    return created_element;
+    return createdElement;
   }
 
-  public classList(
-    element: Element,
-    type: ClassListType,
-    classNames: string | string[]
-  ): void {
-    if (typeof classNames === "string") {
+  public classLists(element: Element, type: ClassListType, classNames: string[]): void {
+    for (const className of classNames) {
       switch (type) {
         case "add":
-          element.classList.add(classNames);
+          element.classList.add(className);
           break;
 
         case "remove":
-          element.classList.remove(classNames);
-          break;
-
-        case "toggle":
-          element.classList.toggle(classNames);
+          element.classList.remove(className);
           break;
 
         default:
-          element.classList.add(classNames);
-      }
-    } else {
-      for (const className of classNames) {
-        switch (type) {
-          case "add":
-            element.classList.add(className);
-            break;
-
-          case "remove":
-            element.classList.remove(className);
-            break;
-
-          case "toggle":
-            element.classList.toggle(className);
-            break;
-
-          default:
-            element.classList.add(className);
-        }
+          element.classList.add(className);
       }
     }
   }
